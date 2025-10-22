@@ -1,0 +1,2539 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pra Você, Com Amor ❤️</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&family=Dancing+Script:wght@400;700&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #ff6b9d;
+        --secondary: #c44569;
+        --accent: #ffd93d;
+        --dark: #2d132c;
+        --light: #fef5ed;
+      }
+
+      body {
+        font-family: 'Montserrat', sans-serif;
+        background: #0f0c29;
+        background: linear-gradient(
+          135deg,
+          #0f0c29 0%,
+          #302b63 50%,
+          #24243e 100%
+        );
+        color: #fff;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 20% 50%,
+            rgba(255, 107, 157, 0.15) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(196, 69, 105, 0.15) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 40% 90%,
+            rgba(255, 217, 61, 0.1) 0%,
+            transparent 50%
+          );
+        animation: gradientShift 15s ease infinite;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      @keyframes gradientShift {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+
+      .stars {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .star {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+        animation: twinkle 3s infinite;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.2;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+
+      .particle {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        font-size: 20px;
+        animation: fall linear forwards;
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .container {
+        position: relative;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 60px 40px;
+        z-index: 1;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 100px;
+        animation: fadeInDown 1.2s ease;
+        position: relative;
+      }
+
+      .header::before {
+        content: '✨';
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 3em;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .header h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 5em;
+        font-weight: 900;
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, #ff6b9d 0%, #ffd93d 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -2px;
+        line-height: 1.2;
+        text-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+      }
+
+      .header p {
+        font-size: 1.2em;
+        opacity: 0.9;
+        font-weight: 300;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+
+      /* Music Player */
+      .music-player {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4),
+          0 0 0 1px rgba(255, 255, 255, 0.1);
+        max-width: 320px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .music-player:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(255, 255, 255, 0.2);
+      }
+
+      .player-toggle {
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        border: none;
+        color: white;
+        padding: 14px 24px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.95em;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        width: 100%;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+      }
+
+      .player-toggle:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(255, 107, 157, 0.5);
+      }
+
+      .player-content {
+        display: none;
+        animation: slideDown 0.3s ease;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .player-content.active {
+        display: block;
+      }
+
+      .playlist-item {
+        padding: 12px 15px;
+        margin: 8px 0;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 0.9em;
+        border-left: 3px solid transparent;
+        font-weight: 500;
+      }
+
+      .playlist-item:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateX(8px);
+        border-left-color: var(--primary);
+      }
+
+      .playlist-item.playing {
+        background: rgba(255, 107, 157, 0.2);
+        border-left-color: var(--accent);
+        box-shadow: 0 0 20px rgba(255, 107, 157, 0.3);
+      }
+
+      /* Music Visualizer */
+      .music-visualizer {
+        position: fixed;
+        bottom: 220px;
+        right: 30px;
+        width: 320px;
+        height: 120px;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4),
+          0 0 0 1px rgba(255, 255, 255, 0.1);
+        display: none;
+        z-index: 999;
+      }
+
+      .music-visualizer.active {
+        display: block;
+        animation: slideUp 0.4s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .visualizer-title {
+        text-align: center;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+        opacity: 0.9;
+        font-weight: 600;
+      }
+
+      .visualizer-bars {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        height: 60px;
+        gap: 3px;
+      }
+
+      .visualizer-bar {
+        flex: 1;
+        background: linear-gradient(to top, var(--primary), var(--accent));
+        border-radius: 4px;
+        transition: height 0.1s ease;
+        box-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+      }
+
+      /* Counter */
+      .days-counter {
+        text-align: center;
+        padding: 60px 40px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(30px);
+        border-radius: 30px;
+        margin-bottom: 80px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1),
+          0 0 0 1px rgba(255, 255, 255, 0.05);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .days-counter::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        animation: shimmer 3s infinite;
+      }
+
+      @keyframes shimmer {
+        to {
+          left: 100%;
+        }
+      }
+
+      .counter-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 3em;
+        margin-bottom: 40px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .counter-display {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        flex-wrap: wrap;
+      }
+
+      .counter-item {
+        text-align: center;
+        position: relative;
+      }
+
+      .counter-number {
+        font-family: 'Playfair Display', serif;
+        font-size: 4.5em;
+        font-weight: 700;
+        display: block;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--accent) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+        line-height: 1;
+      }
+
+      .counter-label {
+        font-size: 0.9em;
+        opacity: 0.8;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-top: 10px;
+        font-weight: 600;
+      }
+
+      .counter-item::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--primary),
+          transparent
+        );
+      }
+
+      /* Timeline */
+      .timeline-section {
+        margin: 100px 0;
+      }
+
+      .timeline-title {
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 3.5em;
+        margin-bottom: 80px;
+        font-weight: 700;
+        position: relative;
+      }
+
+      .timeline-title::after {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        border-radius: 2px;
+      }
+
+      .timeline-container {
+        position: relative;
+        padding: 60px 0;
+      }
+
+      .timeline-line {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .timeline-progress {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 0%;
+        background: linear-gradient(to bottom, var(--primary), var(--accent));
+        box-shadow: 0 0 20px var(--primary);
+        transition: height 0.3s ease;
+      }
+
+      .timeline-item {
+        position: relative;
+        margin: 80px 0;
+        display: flex;
+        align-items: center;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .timeline-item.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .timeline-item:nth-child(odd) {
+        flex-direction: row-reverse;
+      }
+
+      .timeline-content {
+        width: 45%;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        padding: 40px;
+        border-radius: 25px;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1),
+          0 0 0 1px rgba(255, 255, 255, 0.05);
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .timeline-content::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        border-radius: 25px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: -1;
+      }
+
+      .timeline-content:hover {
+        transform: scale(1.05) translateY(-10px);
+      }
+
+      .timeline-content:hover::before {
+        opacity: 0.3;
+      }
+
+      .timeline-dot {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 24px;
+        height: 24px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        border-radius: 50%;
+        border: 4px solid rgba(0, 0, 0, 0.4);
+        box-shadow: 0 0 0 4px rgba(255, 107, 157, 0.2), 0 0 20px var(--primary);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+      }
+
+      .timeline-dot:hover {
+        transform: translateX(-50%) scale(1.5);
+        box-shadow: 0 0 0 8px rgba(255, 107, 157, 0.3), 0 0 30px var(--primary);
+      }
+
+      .timeline-date {
+        font-family: 'Dancing Script', cursive;
+        font-size: 2em;
+        margin-bottom: 15px;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .timeline-text {
+        font-size: 1.1em;
+        line-height: 1.8;
+        opacity: 0.95;
+      }
+
+      .timeline-secret {
+        margin-top: 20px;
+        padding: 20px;
+        background: rgba(255, 107, 157, 0.1);
+        border-radius: 15px;
+        border-left: 4px solid var(--primary);
+        font-style: italic;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .timeline-secret.revealed {
+        opacity: 1;
+        max-height: 300px;
+      }
+
+      .secret-hint {
+        font-size: 0.85em;
+        opacity: 0.6;
+        margin-top: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-block;
+      }
+
+      .secret-hint:hover {
+        opacity: 1;
+        transform: translateX(5px);
+      }
+
+      .section {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(30px);
+        border-radius: 30px;
+        padding: 60px 50px;
+        margin-bottom: 60px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1),
+          0 0 0 1px rgba(255, 255, 255, 0.05);
+        animation: fadeInUp 1s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .section::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 107, 157, 0.05) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .message-box {
+        font-family: 'Playfair Display', serif;
+        font-size: 2em;
+        line-height: 1.8;
+        text-align: center;
+        padding: 40px;
+        margin: 30px 0;
+        position: relative;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+      }
+
+      .message-box::before,
+      .message-box::after {
+        content: '♪';
+        position: absolute;
+        font-size: 3em;
+        opacity: 0.2;
+        animation: float 4s ease-in-out infinite;
+        color: var(--accent);
+      }
+
+      .message-box::before {
+        left: 30px;
+        top: 20px;
+      }
+
+      .message-box::after {
+        right: 30px;
+        bottom: 20px;
+        animation-delay: 2s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-30px) rotate(10deg);
+        }
+      }
+
+      .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin: 40px 0;
+      }
+
+      .photo-card {
+        position: relative;
+        aspect-ratio: 1;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .photo-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 107, 157, 0.2),
+          rgba(255, 217, 61, 0.2)
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .photo-card:hover {
+        transform: scale(1.08) rotate(3deg);
+        box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4);
+      }
+
+      .photo-card:hover::before {
+        opacity: 1;
+      }
+
+      .photo-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease, filter 0.4s ease;
+        filter: saturate(1.2) contrast(1.1) brightness(1.05);
+      }
+
+      .photo-card:hover img {
+        transform: scale(1.1);
+        filter: saturate(1.4) contrast(1.15) brightness(1.08);
+      }
+
+      .photo-placeholder {
+        font-family: 'Dancing Script', cursive;
+        font-size: 1.8em;
+        text-align: center;
+        padding: 20px;
+        opacity: 0.6;
+      }
+
+      /* Lightbox */
+      .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .lightbox.active {
+        display: flex;
+      }
+
+      .lightbox-content {
+        position: relative;
+        max-width: 90vw;
+        max-height: 90vh;
+        animation: zoomIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .lightbox-image {
+        max-width: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 15px;
+        box-shadow: 0 0 100px rgba(255, 107, 157, 0.5);
+        filter: saturate(1.2) contrast(1.1) brightness(1.05);
+      }
+
+      .lightbox-close,
+      .lightbox-prev,
+      .lightbox-next {
+        position: fixed;
+        background: rgba(255, 107, 157, 0.3);
+        backdrop-filter: blur(20px);
+        border: none;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1.5em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .lightbox-close {
+        top: 30px;
+        right: 30px;
+      }
+
+      .lightbox-prev {
+        left: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .lightbox-next {
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .lightbox-close:hover {
+        background: rgba(255, 107, 157, 0.6);
+        transform: scale(1.1) rotate(90deg);
+        box-shadow: 0 8px 30px rgba(255, 107, 157, 0.5);
+      }
+
+      .lightbox-prev:hover,
+      .lightbox-next:hover {
+        background: rgba(255, 107, 157, 0.6);
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 8px 30px rgba(255, 107, 157, 0.5);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes zoomIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Love Tree */
+      .love-tree-section {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(30px);
+        border-radius: 30px;
+        padding: 60px 50px;
+        margin-bottom: 60px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1),
+          0 0 0 1px rgba(255, 255, 255, 0.05);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .tree-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .tree-svg-container {
+        width: 100%;
+        max-width: 600px;
+        height: 500px;
+        position: relative;
+        margin: 20px auto;
+      }
+
+      #loveTreeSVG {
+        width: 100%;
+        height: 100%;
+        filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+      }
+
+      /* Animações SVG */
+      @keyframes leafFloat {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-8px) rotate(5deg);
+        }
+      }
+
+      @keyframes heartPulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 0.8;
+        }
+      }
+
+      @keyframes specialFloat {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0);
+        }
+        25% {
+          transform: translateY(-10px) translateX(5px);
+        }
+        75% {
+          transform: translateY(-5px) translateX(-5px);
+        }
+      }
+
+      .tree-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        width: 100%;
+        margin-top: 40px;
+      }
+
+      .tree-stat {
+        text-align: center;
+        padding: 30px 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .tree-stat::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.05),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .tree-stat:hover::before {
+        left: 100%;
+      }
+
+      .tree-stat:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 10px 30px rgba(255, 107, 157, 0.2);
+        border-color: var(--primary);
+      }
+
+      .tree-stat-emoji {
+        font-size: 2.5em;
+        display: block;
+        margin-bottom: 15px;
+        filter: drop-shadow(0 3px 10px rgba(255, 107, 157, 0.3));
+      }
+
+      .tree-stat-number {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.8em;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: block;
+        margin-bottom: 8px;
+        line-height: 1;
+      }
+
+      .tree-stat-label {
+        font-size: 0.9em;
+        opacity: 0.8;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
+      }
+
+      .tree-stat-description {
+        font-size: 0.85em;
+        opacity: 0.6;
+        margin-top: 8px;
+        font-style: italic;
+      }
+
+      .interactive-heart {
+        text-align: center;
+        margin: 80px 0;
+      }
+
+      .heart-button {
+        font-size: 6em;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        filter: drop-shadow(0 10px 30px rgba(255, 107, 157, 0.6));
+      }
+
+      .heart-button:hover {
+        transform: scale(1.3);
+        filter: drop-shadow(0 15px 40px rgba(255, 107, 157, 0.8));
+      }
+
+      .heart-button.clicked {
+        animation: heartBeat 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      @keyframes heartBeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        15% {
+          transform: scale(1.4);
+        }
+        30% {
+          transform: scale(1.1);
+        }
+        45% {
+          transform: scale(1.35);
+        }
+        60% {
+          transform: scale(1.05);
+        }
+      }
+
+      .counter {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.2em;
+        margin-top: 30px;
+        font-weight: 400;
+      }
+
+      .funny-facts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 30px;
+        margin: 40px 0;
+      }
+
+      .fact-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        padding: 35px 25px;
+        border-radius: 20px;
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .fact-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .fact-card:hover::before {
+        opacity: 0.1;
+      }
+
+      .fact-card:hover {
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 20px 50px rgba(255, 107, 157, 0.3);
+        border-color: var(--primary);
+      }
+
+      .fact-emoji {
+        font-size: 3.5em;
+        display: block;
+        margin-bottom: 20px;
+        filter: drop-shadow(0 5px 15px rgba(255, 107, 157, 0.3));
+      }
+
+      .fact-text {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1em;
+        line-height: 1.6;
+        font-weight: 400;
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-80px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(80px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .music-inspired {
+        font-style: italic;
+        opacity: 0.95;
+        border-left: 4px solid var(--primary);
+        padding-left: 30px;
+        margin: 30px 0;
+        background: rgba(255, 107, 157, 0.05);
+        padding: 30px;
+        padding-left: 40px;
+        border-radius: 15px;
+      }
+
+      .final-message {
+        text-align: center;
+        font-size: 3em;
+        font-family: 'Playfair Display', serif;
+        margin: 100px 0;
+        font-weight: 700;
+        background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.4;
+      }
+
+      .section-title {
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 3em;
+        margin-bottom: 50px;
+        font-weight: 700;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        border-radius: 2px;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .container {
+          padding: 40px 20px;
+        }
+
+        .header h1 {
+          font-size: 2.8em;
+          letter-spacing: -1px;
+        }
+
+        .header p {
+          font-size: 0.9em;
+          letter-spacing: 2px;
+        }
+
+        .header::before {
+          font-size: 2em;
+          top: -30px;
+        }
+
+        .section {
+          padding: 40px 25px;
+          margin-bottom: 40px;
+          border-radius: 20px;
+        }
+
+        .message-box {
+          font-size: 1.4em;
+          padding: 25px 20px;
+        }
+
+        .message-box::before,
+        .message-box::after {
+          font-size: 2em;
+          opacity: 0.15;
+        }
+
+        .timeline-title {
+          font-size: 2.5em;
+          margin-bottom: 50px;
+        }
+
+        .timeline-line {
+          left: 25px;
+        }
+
+        .timeline-item {
+          flex-direction: row !important;
+          padding-left: 60px;
+          margin: 50px 0;
+        }
+
+        .timeline-content {
+          width: calc(100% - 60px);
+          padding: 25px 20px;
+          border-radius: 20px;
+        }
+
+        .timeline-date {
+          font-size: 1.6em;
+        }
+
+        .timeline-text {
+          font-size: 1em;
+        }
+
+        .timeline-dot {
+          left: 25px;
+          width: 18px;
+          height: 18px;
+          border-width: 3px;
+        }
+
+        .timeline-secret {
+          padding: 15px;
+          font-size: 0.95em;
+        }
+
+        .counter-title {
+          font-size: 2.2em;
+        }
+
+        .counter-display {
+          gap: 25px;
+        }
+
+        .counter-number {
+          font-size: 3em;
+        }
+
+        .counter-label {
+          font-size: 0.8em;
+          letter-spacing: 2px;
+        }
+
+        .days-counter {
+          padding: 40px 25px;
+          margin-bottom: 50px;
+          border-radius: 20px;
+        }
+
+        .days-counter p {
+          font-size: 1.2em;
+        }
+
+        .photo-grid {
+          grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+          gap: 20px;
+        }
+
+        .funny-facts {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .fact-card {
+          padding: 25px 20px;
+        }
+
+        .fact-emoji {
+          font-size: 3em;
+        }
+
+        .fact-text {
+          font-size: 1em;
+        }
+
+        .heart-button {
+          font-size: 4.5em;
+        }
+
+        .counter {
+          font-size: 1.6em;
+        }
+
+        .final-message {
+          font-size: 2em;
+          margin: 60px 0;
+        }
+
+        .music-player {
+          bottom: 15px;
+          right: 15px;
+          left: 15px;
+          max-width: none;
+          padding: 15px;
+          border-radius: 15px;
+        }
+
+        .music-visualizer {
+          bottom: 150px;
+          right: 15px;
+          left: 15px;
+          width: auto;
+        }
+
+        .player-toggle {
+          font-size: 0.85em;
+          padding: 12px 18px;
+        }
+
+        .playlist-item {
+          font-size: 0.85em;
+          padding: 10px 12px;
+        }
+
+        .section-title {
+          font-size: 2.2em;
+          margin-bottom: 35px;
+        }
+
+        .interactive-heart {
+          margin: 50px 0;
+        }
+
+        .interactive-heart h2 {
+          font-size: 1.8em;
+        }
+
+        .tree-svg-container {
+          height: 400px;
+        }
+
+        .tree-stats {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .love-tree-section {
+          padding: 40px 25px;
+        }
+
+        .lightbox-close,
+        .lightbox-prev,
+        .lightbox-next {
+          width: 40px;
+          height: 40px;
+          font-size: 1.2em;
+        }
+
+        .lightbox-close {
+          top: 15px;
+          right: 15px;
+        }
+
+        .lightbox-prev {
+          left: 15px;
+        }
+
+        .lightbox-next {
+          right: 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header h1 {
+          font-size: 2.2em;
+        }
+
+        .header p {
+          font-size: 0.8em;
+        }
+
+        .message-box {
+          font-size: 1.2em;
+          padding: 20px 15px;
+        }
+
+        .timeline-title {
+          font-size: 2em;
+        }
+
+        .timeline-date {
+          font-size: 1.4em;
+        }
+
+        .counter-number {
+          font-size: 2.5em;
+        }
+
+        .counter-label {
+          font-size: 0.75em;
+        }
+
+        .photo-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .heart-button {
+          font-size: 4em;
+        }
+
+        .counter {
+          font-size: 1.4em;
+        }
+
+        .final-message {
+          font-size: 1.6em;
+        }
+
+        .section-title {
+          font-size: 1.8em;
+        }
+
+        .tree-svg-container {
+          height: 350px;
+        }
+
+        .tree-stat-number {
+          font-size: 2.2em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stars" id="stars"></div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <button class="lightbox-prev" onclick="navigateLightbox(-1)">‹</button>
+      <button class="lightbox-next" onclick="navigateLightbox(1)">›</button>
+      <div class="lightbox-content">
+        <img
+          class="lightbox-image"
+          id="lightboxImage"
+          src=""
+          alt="Foto ampliada"
+        />
+      </div>
+    </div>
+
+    <!-- Music Visualizer -->
+    <div class="music-visualizer" id="musicVisualizer">
+      <div class="visualizer-title">🎵 Visualizador Musical</div>
+      <div class="visualizer-bars" id="visualizerBars"></div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+      <button class="player-toggle" onclick="togglePlayer()">
+        🎵 Trilha Sonora do Amor
+      </button>
+      <div class="player-content" id="playerContent">
+        <div class="playlist-item" onclick="playVideo('6u-Na8GCRKI')">
+          🎵 Liniker - Zero
+        </div>
+        <div class="playlist-item" onclick="playVideo('YM0JqzQ4dKs')">
+          🎵 Jorge Ben Jor - Taj Mahal
+        </div>
+        <div class="playlist-item" onclick="playVideo('8qgUcf_FHAw')">
+          🎵 Gal Costa - Baby
+        </div>
+        <div class="playlist-item" onclick="playVideo('NYXGswKqxh0')">
+          🎵 Liniker - Lalange
+        </div>
+        <div class="playlist-item" onclick="playVideo('SIuUHm46tMY')">
+          🎵 Jorge Ben Jor - Chove Chuva
+        </div>
+      </div>
+      <div id="player" style="margin-top: 10px"></div>
+    </div>
+
+    <div class="container">
+      <div class="header">
+        <h1>Para a Pessoa Mais Incrível do Mundo</h1>
+        <p>Um cantinho especial feito com muito carinho (e algumas risadas)</p>
+      </div>
+
+      <!-- Days Counter -->
+      <div class="days-counter">
+        <div class="counter-title">Juntos há...</div>
+        <div class="counter-display">
+          <div class="counter-item">
+            <span class="counter-number" id="days">0</span>
+            <span class="counter-label">Dias</span>
+          </div>
+          <div class="counter-item">
+            <span class="counter-number" id="hours">0</span>
+            <span class="counter-label">Horas</span>
+          </div>
+          <div class="counter-item">
+            <span class="counter-number" id="minutes">0</span>
+            <span class="counter-label">Minutos</span>
+          </div>
+        </div>
+        <p
+          style="
+            margin-top: 30px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6em;
+            opacity: 0.95;
+          "
+        >
+          E cada segundo vale ouro! ✨
+        </p>
+      </div>
+
+      <div class="section">
+        <div class="message-box">
+          Como o sol que ilumina a manhã, você traz luz para todos os meus dias.
+          Seu sorriso tem o poder de transformar o comum em extraordinário.
+        </div>
+      </div>
+
+      <!-- Love Tree Section -->
+      <div class="love-tree-section">
+        <h2 class="section-title">🌳 Nossa Árvore do Amor</h2>
+        <div class="tree-container">
+          <div class="tree-svg-container">
+            <svg
+              id="loveTreeSVG"
+              viewBox="0 0 400 500"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <!-- Será preenchido dinamicamente pelo JavaScript -->
+            </svg>
+          </div>
+          <div class="tree-stats">
+            <div class="tree-stat">
+              <span class="tree-stat-emoji">🌳</span>
+              <span class="tree-stat-number" id="treeLevel">1</span>
+              <span class="tree-stat-label">Nível</span>
+              <div class="tree-stat-description">+1 a cada 4 meses</div>
+            </div>
+            <div class="tree-stat">
+              <span class="tree-stat-emoji">🍃</span>
+              <span class="tree-stat-number" id="leavesCount">0</span>
+              <span class="tree-stat-label">Folhas</span>
+              <div class="tree-stat-description">+3 por semana</div>
+            </div>
+            <div class="tree-stat">
+              <span class="tree-stat-emoji">💖</span>
+              <span class="tree-stat-number" id="heartsCount">0</span>
+              <span class="tree-stat-label">Corações</span>
+              <div class="tree-stat-description">+1 por mês</div>
+            </div>
+            <div class="tree-stat">
+              <span class="tree-stat-emoji">🌿</span>
+              <span class="tree-stat-number" id="branchesCount">0</span>
+              <span class="tree-stat-label">Galhos</span>
+              <div class="tree-stat-description">+1 por mês</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline-section">
+        <h2 class="timeline-title">Nossa História 💕</h2>
+        <div class="timeline-container">
+          <div class="timeline-line">
+            <div class="timeline-progress" id="timelineProgress"></div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content" onclick="revealSecret(this)">
+              <div class="timeline-date">🌟 O Primeiro Olhar</div>
+              <div class="timeline-text">
+                Quando nossos olhares se cruzaram pela primeira vez, eu soube
+                que algo especial estava começando...
+              </div>
+              <div class="secret-hint">
+                💭 Clique para revelar uma mensagem secreta...
+              </div>
+              <div class="timeline-secret">
+                "Naquele momento, o universo conspirou a nosso favor. Foi amor à
+                primeira vista disfarçado de coincidência." 💫
+              </div>
+            </div>
+            <div class="timeline-dot"></div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content" onclick="revealSecret(this)">
+              <div class="timeline-date">💬 As Primeiras Conversas</div>
+              <div class="timeline-text">
+                Conversas que duravam horas, risadas que não tinham fim, e a
+                sensação de que conhecia você há muito mais tempo...
+              </div>
+              <div class="secret-hint">
+                💭 Clique para revelar uma mensagem secreta...
+              </div>
+              <div class="timeline-secret">
+                "Cada palavra sua era música para meus ouvidos. Eu podia passar
+                a eternidade apenas te ouvindo falar." 🎵
+              </div>
+            </div>
+            <div class="timeline-dot"></div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content" onclick="revealSecret(this)">
+              <div class="timeline-date">❤️ O Primeiro Beijo</div>
+              <div class="timeline-text">
+                O mundo parou. O tempo congelou. E nada mais importava além
+                daquele momento mágico...
+              </div>
+              <div class="secret-hint">
+                💭 Clique para revelar uma mensagem secreta...
+              </div>
+              <div class="timeline-secret">
+                "Se pudesse, eu reviveria esse momento mil vezes. Foi perfeito
+                de todas as formas possíveis." 💋
+              </div>
+            </div>
+            <div class="timeline-dot"></div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content" onclick="revealSecret(this)">
+              <div class="timeline-date">🌈 Aventuras Juntos</div>
+              <div class="timeline-text">
+                Cada lugar que visitamos, cada experiência que compartilhamos,
+                cada risada que demos - tudo se tornou uma memória preciosa...
+              </div>
+              <div class="secret-hint">
+                💭 Clique para revelar uma mensagem secreta...
+              </div>
+              <div class="timeline-secret">
+                "Com você, até os momentos mais simples se transformam em
+                aventuras extraordinárias. Você é minha pessoa favorita!" 🌍
+              </div>
+            </div>
+            <div class="timeline-dot"></div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content" onclick="revealSecret(this)">
+              <div class="timeline-date">✨ Hoje e Sempre</div>
+              <div class="timeline-text">
+                E aqui estamos nós, construindo nosso futuro juntos, um dia de
+                cada vez, cheios de amor e cumplicidade...
+              </div>
+              <div class="secret-hint">
+                💭 Clique para revelar uma mensagem secreta...
+              </div>
+              <div class="timeline-secret">
+                "Não importa o que o futuro reserve, eu quero viver cada momento
+                ao seu lado. Você é meu para sempre! 💍"
+              </div>
+            </div>
+            <div class="timeline-dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Nossos Momentos ✨</h2>
+        <div class="photo-grid">
+          <div class="photo-card" onclick="openLightbox(0)">
+            <div class="photo-placeholder">Foto 1<br />📸</div>
+          </div>
+          <div class="photo-card" onclick="openLightbox(1)">
+            <div class="photo-placeholder">Foto 2<br />📸</div>
+          </div>
+          <div class="photo-card" onclick="openLightbox(2)">
+            <div class="photo-placeholder">Foto 3<br />📸</div>
+          </div>
+          <div class="photo-card" onclick="openLightbox(3)">
+            <div class="photo-placeholder">Foto 4<br />📸</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="message-box music-inspired">
+          Como uma melodia suave de Jorge Ben Jor numa tarde ensolarada, você
+          traz ritmo e alegria para a vida. É impossível ficar triste ao seu
+          lado, porque você tem esse dom de fazer tudo parecer uma celebração.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="photo-grid">
+          <div class="photo-card" onclick="openLightbox(4)">
+            <div class="photo-placeholder">Foto 5<br />📸</div>
+          </div>
+          <div class="photo-card" onclick="openLightbox(5)">
+            <div class="photo-placeholder">Foto 6<br />📸</div>
+          </div>
+          <div class="photo-card" onclick="openLightbox(6)">
+            <div class="photo-placeholder">Foto 7<br />📸</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="message-box">
+          Você é como uma canção de Gal Costa: atemporal, linda e impossível de
+          esquecer. Cada momento ao seu lado é como descobrir uma nota perfeita
+          que eu não sabia que existia.
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Coisas que Eu Amo em Você 😄</h2>
+        <div class="funny-facts">
+          <div class="fact-card" onclick="createParticles(event)">
+            <span class="fact-emoji">😂</span>
+            <div class="fact-text">
+              Seu senso de humor que me faz rir até nos dias cinzas
+            </div>
+          </div>
+          <div class="fact-card" onclick="createParticles(event)">
+            <span class="fact-emoji">🎵</span>
+            <div class="fact-text">
+              Seu gosto musical impecável (sério, você arrasa!)
+            </div>
+          </div>
+          <div class="fact-card" onclick="createParticles(event)">
+            <span class="fact-emoji">✨</span>
+            <div class="fact-text">
+              O jeito como você ilumina qualquer ambiente
+            </div>
+          </div>
+          <div class="fact-card" onclick="createParticles(event)">
+            <span class="fact-emoji">💭</span>
+            <div class="fact-text">
+              Nossas conversas que parecem nunca acabar
+            </div>
+          </div>
+          <div class="fact-card" onclick="createParticles(event)">
+            <span class="fact-emoji">🌟</span>
+            <div class="fact-text">Sua força e determinação admiráveis</div>
+          </div>
+          <div class="fact-card" onclick="createParticles(event)">
+            <span class="fact-emoji">💫</span>
+            <div class="fact-text">O carinho e atenção que você tem comigo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="photo-grid">
+          <div class="photo-card" onclick="openLightbox(7)">
+            <div class="photo-placeholder">Foto 8<br />📸</div>
+          </div>
+          <div class="photo-card" onclick="openLightbox(8)">
+            <div class="photo-placeholder">Foto 9<br />📸</div>
+          </div>
+          <div class="photo-card" onclick="openLightbox(9)">
+            <div class="photo-placeholder">Foto 10<br />📸</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="message-box music-inspired">
+          Com a poesia de Liniker, quero te dizer: você é arte em movimento,
+          beleza que transcende, amor que inspira. Sua presença é um presente
+          que celebro todos os dias.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="interactive-heart">
+          <h2
+            style="
+              font-family: 'Playfair Display', serif;
+              font-size: 2.5em;
+              margin-bottom: 30px;
+              font-weight: 700;
+            "
+          >
+            Clique no coração! ❤️
+          </h2>
+          <button class="heart-button" id="heartBtn" onclick="clickHeart()">
+            ❤️
+          </button>
+          <div class="counter">
+            Você foi amada <span id="loveCounter">0</span> vezes hoje!
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="final-message">
+          Obrigado por ser você, por ser incrível, por estar na minha vida. Você
+          é especial demais!
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+      // ===== CONFIGURAÇÃO - ALTERE AQUI =====
+      const startDate = new Date('2025-03-20T00:00:00'); // Data de início do relacionamento
+
+      // ===== SISTEMA DE RANDOM DETERMINÍSTICO =====
+      class SeededRandom {
+        constructor(seed) {
+          this.seed = seed;
+        }
+
+        next() {
+          this.seed = (this.seed * 9301 + 49297) % 233280;
+          return this.seed / 233280;
+        }
+      }
+
+      // ===== CRIAR ESTRELAS =====
+      const starsContainer = document.getElementById('stars');
+      for (let i = 0; i < 150; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 3 + 's';
+        star.style.animationDuration = 2 + Math.random() * 2 + 's';
+        starsContainer.appendChild(star);
+      }
+
+      // ===== LOVE TREE SYSTEM =====
+      function calcularEstatisticas() {
+        const agora = new Date();
+        const diff = agora - startDate;
+
+        const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const semanas = Math.floor(dias / 7);
+        const meses = Math.floor(dias / 30);
+        const trimestres = Math.floor(meses / 3);
+
+        // Sistema de crescimento
+        const nivel = Math.max(1, Math.floor(meses / 4) + 1); // +1 nível a cada 4 meses
+        const folhas = Math.min(semanas * 3, 300); // 3 folhas por semana, máx 300
+        const coracoes = meses; // 1 coração por mês
+        const galhos = meses; // 1 galho por mês
+
+        return {
+          dias,
+          semanas,
+          meses,
+          trimestres,
+          nivel,
+          folhas,
+          coracoes,
+          galhos,
+        };
+      }
+
+      function determinarEstacao(meses) {
+        const ciclo = meses % 12;
+
+        if (ciclo < 3) return 'primavera';
+        if (ciclo < 6) return 'verao';
+        if (ciclo < 9) return 'outono';
+        return 'inverno';
+      }
+
+      function obterCoresEstacao(estacao) {
+        const cores = {
+          primavera: {
+            folha: ['#90EE90', '#98FB98', '#00FA9A'],
+            copa: '#7CFC00',
+            especial: '#FFB6C1',
+          },
+          verao: {
+            folha: ['#228B22', '#32CD32', '#006400'],
+            copa: '#228B22',
+            especial: '#FFD700',
+          },
+          outono: {
+            folha: ['#FF8C00', '#FF6347', '#DC143C'],
+            copa: '#FF8C00',
+            especial: '#8B4513',
+          },
+          inverno: {
+            folha: ['#87CEEB', '#B0E0E6', '#ADD8E6'],
+            copa: '#4682B4',
+            especial: '#E0FFFF',
+          },
+        };
+
+        return cores[estacao] || cores.primavera;
+      }
+
+      function gerarArvore() {
+        const stats = calcularEstatisticas();
+        const estacao = determinarEstacao(stats.meses);
+        const cores = obterCoresEstacao(estacao);
+
+        // Atualizar estatísticas na UI
+        document.getElementById('treeLevel').textContent = stats.nivel;
+        document.getElementById('leavesCount').textContent = stats.folhas;
+        document.getElementById('heartsCount').textContent = stats.coracoes;
+        document.getElementById('branchesCount').textContent = stats.galhos;
+
+        // Gerar SVG da árvore
+        const svg = document.getElementById('loveTreeSVG');
+        svg.innerHTML = '';
+
+        // Calcular tamanho baseado no nível
+        const baseHeight = 150 + stats.nivel * 30;
+        const baseWidth = 60 + stats.nivel * 10;
+        const copaSize = 100 + stats.nivel * 20;
+
+        // Criar grupo principal
+        const mainGroup = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'g'
+        );
+
+        // ===== TRONCO =====
+        const trunk = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'rect'
+        );
+        trunk.setAttribute('x', 200 - baseWidth / 2);
+        trunk.setAttribute('y', 500 - baseHeight);
+        trunk.setAttribute('width', baseWidth);
+        trunk.setAttribute('height', baseHeight);
+        trunk.setAttribute('rx', 10);
+        trunk.setAttribute('fill', 'url(#trunkGradient)');
+        trunk.setAttribute('filter', 'url(#shadow)');
+
+        // Gradiente do tronco
+        const trunkGradient = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'defs'
+        );
+        trunkGradient.innerHTML = `
+          <linearGradient id="trunkGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#8B4513;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#A0522D;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#654321;stop-opacity:1" />
+          </linearGradient>
+          <filter id="shadow">
+            <feDropShadow dx="0" dy="5" stdDeviation="5" flood-opacity="0.3"/>
+          </filter>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        `;
+        svg.appendChild(trunkGradient);
+        mainGroup.appendChild(trunk);
+
+        // ===== COPA BASE =====
+        const copa = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'ellipse'
+        );
+        copa.setAttribute('cx', 200);
+        copa.setAttribute('cy', 500 - baseHeight - copaSize / 2);
+        copa.setAttribute('rx', copaSize);
+        copa.setAttribute('ry', copaSize);
+        copa.setAttribute('fill', cores.copa);
+        copa.setAttribute('opacity', 0.6);
+        copa.setAttribute('filter', 'url(#shadow)');
+        mainGroup.appendChild(copa);
+
+        // ===== GALHOS =====
+        const rng = new SeededRandom(stats.meses);
+        for (let i = 0; i < stats.galhos; i++) {
+          const branch = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'path'
+          );
+
+          const side = i % 2 === 0 ? 1 : -1;
+          const startY =
+            500 - baseHeight * 0.3 - (i * baseHeight * 0.5) / stats.galhos;
+          const startX = 200;
+
+          const length = 30 + rng.next() * 40;
+          const angle = (30 + rng.next() * 40) * side;
+
+          const midX =
+            startX + Math.sin((angle * Math.PI) / 180) * (length * 0.6);
+          const midY =
+            startY - Math.cos((angle * Math.PI) / 180) * (length * 0.4);
+
+          const endX = startX + Math.sin((angle * Math.PI) / 180) * length;
+          const endY = startY - Math.cos((angle * Math.PI) / 180) * length;
+
+          const pathData = `M ${startX} ${startY} Q ${midX} ${midY} ${endX} ${endY}`;
+
+          branch.setAttribute('d', pathData);
+          branch.setAttribute('stroke', '#654321');
+          branch.setAttribute('stroke-width', 8 - Math.floor(i / 3));
+          branch.setAttribute('stroke-linecap', 'round');
+          branch.setAttribute('fill', 'none');
+          branch.setAttribute('opacity', 0.9);
+
+          mainGroup.appendChild(branch);
+        }
+
+        // ===== FOLHAS =====
+        const leafRng = new SeededRandom(stats.semanas);
+        const centerX = 200;
+        const centerY = 500 - baseHeight - copaSize / 2;
+
+        for (let i = 0; i < stats.folhas; i++) {
+          const leaf = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'g'
+          );
+
+          // Distribuição em elipse
+          const angle = leafRng.next() * Math.PI * 2;
+          const distance = leafRng.next() * 0.8;
+          const x = centerX + Math.cos(angle) * copaSize * distance;
+          const y = centerY + Math.sin(angle) * copaSize * distance;
+
+          const leafSize = 8 + leafRng.next() * 4;
+          const rotation = leafRng.next() * 360;
+
+          // Formato de folha usando path
+          const leafPath = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'path'
+          );
+
+          const leafPathData = `
+    M 0,0
+    Q ${leafSize * 0.3},-${leafSize * 0.5} ${leafSize * 0.5},-${leafSize}
+    Q ${leafSize * 0.6},-${leafSize * 0.7} ${leafSize * 0.5},0
+    Q ${leafSize * 0.6},${leafSize * 0.7} ${leafSize * 0.5},${leafSize}
+    Q ${leafSize * 0.3},${leafSize * 0.5} 0,0
+  `;
+
+          leafPath.setAttribute('d', leafPathData);
+          leafPath.setAttribute(
+            'fill',
+            cores.folha[Math.floor(leafRng.next() * cores.folha.length)]
+          );
+          leafPath.setAttribute('opacity', 0.75 + leafRng.next() * 0.25);
+          leafPath.setAttribute('stroke', '#2d5016');
+          leafPath.setAttribute('stroke-width', '0.5');
+
+          leaf.appendChild(leafPath);
+          leaf.setAttribute(
+            'transform',
+            `translate(${x}, ${y}) rotate(${rotation})`
+          );
+
+          // Animação suave
+          const animDelay = leafRng.next() * 3;
+          const anim = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'animateTransform'
+          );
+          anim.setAttribute('attributeName', 'transform');
+          anim.setAttribute('type', 'rotate');
+          anim.setAttribute(
+            'values',
+            `${rotation} ${x} ${y}; ${
+              rotation + 5
+            } ${x} ${y}; ${rotation} ${x} ${y}`
+          );
+          anim.setAttribute('dur', '4s');
+          anim.setAttribute('begin', animDelay + 's');
+          anim.setAttribute('repeatCount', 'indefinite');
+          leaf.appendChild(anim);
+
+          mainGroup.appendChild(leaf);
+        }
+
+        // ===== CORAÇÕES =====
+        const heartRng = new SeededRandom(stats.meses + 1000);
+        for (let i = 0; i < stats.coracoes; i++) {
+          const heartG = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'g'
+          );
+
+          const angle = heartRng.next() * Math.PI * 2;
+          const distance = heartRng.next() * 0.7;
+          const x = centerX + Math.cos(angle) * copaSize * distance;
+          const y = centerY + Math.sin(angle) * copaSize * distance;
+
+          heartG.setAttribute('transform', `translate(${x}, ${y})`);
+
+          // Desenhar coração em SVG
+          const heart = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'path'
+          );
+          heart.setAttribute(
+            'd',
+            'M0,-5 C-5,-10 -10,-5 -5,0 L0,5 L5,0 C10,-5 5,-10 0,-5 Z'
+          );
+          heart.setAttribute('fill', '#ff6b9d');
+          heart.setAttribute('filter', 'url(#glow)');
+          heart.setAttribute('opacity', 0.9);
+
+          // Animação de pulsar
+          const pulseAnim = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'animateTransform'
+          );
+          pulseAnim.setAttribute('attributeName', 'transform');
+          pulseAnim.setAttribute('type', 'scale');
+          pulseAnim.setAttribute('values', '1;1.3;1');
+          pulseAnim.setAttribute('dur', '1.5s');
+          pulseAnim.setAttribute('begin', heartRng.next() * 1.5 + 's');
+          pulseAnim.setAttribute('repeatCount', 'indefinite');
+          heart.appendChild(pulseAnim);
+
+          heartG.appendChild(heart);
+          mainGroup.appendChild(heartG);
+        }
+
+        // ===== ELEMENTOS ESPECIAIS POR TRIMESTRE =====
+        if (stats.trimestres >= 1) {
+          // Borboleta
+          const butterfly = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'g'
+          );
+          butterfly.innerHTML = `
+            <ellipse cx="-5" cy="0" rx="6" ry="8" fill="#FFB6C1" opacity="0.8"/>
+            <ellipse cx="5" cy="0" rx="6" ry="8" fill="#FFB6C1" opacity="0.8"/>
+            <circle cx="0" cy="0" r="2" fill="#FF69B4"/>
+          `;
+          butterfly.setAttribute(
+            'transform',
+            `translate(${centerX + copaSize - 20}, ${centerY - 50})`
+          );
+
+          const flyAnim = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'animateTransform'
+          );
+          flyAnim.setAttribute('attributeName', 'transform');
+          flyAnim.setAttribute('type', 'translate');
+          flyAnim.setAttribute(
+            'values',
+            `${centerX + copaSize - 20},${centerY - 50}; ${
+              centerX + copaSize - 30
+            },${centerY - 60}; ${centerX + copaSize - 20},${centerY - 50}`
+          );
+          flyAnim.setAttribute('dur', '4s');
+          flyAnim.setAttribute('repeatCount', 'indefinite');
+          butterfly.appendChild(flyAnim);
+
+          mainGroup.appendChild(butterfly);
+        }
+
+        if (stats.trimestres >= 2) {
+          // Pássaro
+          const bird = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'g'
+          );
+          bird.innerHTML = `
+            <ellipse cx="0" cy="0" rx="6" ry="4" fill="#4169E1"/>
+            <path d="M-6,-2 L-10,0 L-6,2" fill="#4169E1"/>
+            <path d="M6,-2 L10,0 L6,2" fill="#4169E1"/>
+            <circle cx="2" cy="-1" r="1" fill="#000"/>
+          `;
+          bird.setAttribute(
+            'transform',
+            `translate(${centerX - copaSize + 30}, ${centerY - 40})`
+          );
+          mainGroup.appendChild(bird);
+        }
+
+        if (stats.trimestres >= 3) {
+          // Flor especial
+          for (let i = 0; i < 3; i++) {
+            const flower = document.createElementNS(
+              'http://www.w3.org/2000/svg',
+              'g'
+            );
+            const fx = centerX + (i - 1) * 40;
+            const fy = centerY + copaSize - 20;
+
+            flower.innerHTML = `
+              <circle cx="0" cy="-5" r="4" fill="${cores.especial}" opacity="0.8"/>
+              <circle cx="-4" cy="-2" r="4" fill="${cores.especial}" opacity="0.8"/>
+              <circle cx="4" cy="-2" r="4" fill="${cores.especial}" opacity="0.8"/>
+              <circle cx="-2" cy="2" r="4" fill="${cores.especial}" opacity="0.8"/>
+              <circle cx="2" cy="2" r="4" fill="${cores.especial}" opacity="0.8"/>
+              <circle cx="0" cy="0" r="3" fill="#FFD700"/>
+            `;
+            flower.setAttribute('transform', `translate(${fx}, ${fy})`);
+            mainGroup.appendChild(flower);
+          }
+        }
+
+        // Aniversário de 1 ano - Flores douradas especiais
+        if (stats.meses >= 12) {
+          for (let i = 0; i < 5; i++) {
+            const goldFlower = document.createElementNS(
+              'http://www.w3.org/2000/svg',
+              'g'
+            );
+            const angle = (i / 5) * Math.PI * 2;
+            const gx = centerX + Math.cos(angle) * (copaSize * 0.9);
+            const gy = centerY + Math.sin(angle) * (copaSize * 0.9);
+
+            goldFlower.innerHTML = `
+              <circle cx="0" cy="0" r="8" fill="#FFD700" opacity="0.9" filter="url(#glow)"/>
+              <circle cx="0" cy="0" r="4" fill="#FFA500" opacity="0.9"/>
+            `;
+            goldFlower.setAttribute('transform', `translate(${gx}, ${gy})`);
+
+            const sparkle = document.createElementNS(
+              'http://www.w3.org/2000/svg',
+              'animate'
+            );
+            sparkle.setAttribute('attributeName', 'opacity');
+            sparkle.setAttribute('values', '0.9;1;0.9');
+            sparkle.setAttribute('dur', '2s');
+            sparkle.setAttribute('repeatCount', 'indefinite');
+            goldFlower.appendChild(sparkle);
+
+            mainGroup.appendChild(goldFlower);
+          }
+        }
+
+        svg.appendChild(mainGroup);
+      }
+
+      // Atualizar árvore
+      gerarArvore();
+      setInterval(gerarArvore, 60000); // Atualiza a cada minuto
+
+      // ===== LIGHTBOX =====
+      let currentPhotoIndex = 0;
+      const photoPlaceholders = document.querySelectorAll('.photo-card');
+
+      function openLightbox(index) {
+        currentPhotoIndex = index;
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.add('active');
+        document.getElementById('lightboxImage').src = '';
+        document.getElementById('lightboxImage').alt = `Foto ${index + 1}`;
+      }
+
+      function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+      }
+
+      function navigateLightbox(direction) {
+        currentPhotoIndex += direction;
+        if (currentPhotoIndex < 0)
+          currentPhotoIndex = photoPlaceholders.length - 1;
+        if (currentPhotoIndex >= photoPlaceholders.length)
+          currentPhotoIndex = 0;
+        openLightbox(currentPhotoIndex);
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+      });
+
+      document.getElementById('lightbox').addEventListener('click', (e) => {
+        if (e.target.id === 'lightbox') closeLightbox();
+      });
+
+      // ===== MUSIC VISUALIZER =====
+      const visualizerBars = document.getElementById('visualizerBars');
+      for (let i = 0; i < 20; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'visualizer-bar';
+        visualizerBars.appendChild(bar);
+      }
+
+      let visualizerInterval;
+
+      function startVisualizer() {
+        document.getElementById('musicVisualizer').classList.add('active');
+        const bars = document.querySelectorAll('.visualizer-bar');
+
+        visualizerInterval = setInterval(() => {
+          bars.forEach((bar) => {
+            const height = Math.random() * 60 + 10;
+            bar.style.height = height + 'px';
+          });
+        }, 100);
+      }
+
+      function stopVisualizer() {
+        document.getElementById('musicVisualizer').classList.remove('active');
+        if (visualizerInterval) clearInterval(visualizerInterval);
+      }
+
+      // ===== YOUTUBE PLAYER =====
+      let player;
+      let playerReady = false;
+
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '0',
+          width: '0',
+          videoId: '6u-Na8GCRKI',
+          playerVars: {
+            playsinline: 1,
+            autoplay: 0,
+          },
+          events: {
+            onReady: onPlayerReady,
+            onStateChange: onPlayerStateChange,
+          },
+        });
+      }
+
+      function onPlayerReady(event) {
+        playerReady = true;
+      }
+
+      function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+          startVisualizer();
+        } else if (
+          event.data === YT.PlayerState.PAUSED ||
+          event.data === YT.PlayerState.ENDED
+        ) {
+          stopVisualizer();
+        }
+      }
+
+      function togglePlayer() {
+        const content = document.getElementById('playerContent');
+        content.classList.toggle('active');
+      }
+
+      function playVideo(videoId) {
+        if (playerReady) {
+          player.loadVideoById(videoId);
+          player.playVideo();
+
+          document.querySelectorAll('.playlist-item').forEach((item) => {
+            item.classList.remove('playing');
+          });
+          event.target.classList.add('playing');
+        }
+      }
+
+      // ===== DAYS COUNTER =====
+      function updateCounter() {
+        const now = new Date();
+        const diff = now - startDate;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+      }
+
+      updateCounter();
+      setInterval(updateCounter, 60000);
+
+      // ===== TIMELINE ANIMATION =====
+      const timelineObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+
+      document.querySelectorAll('.timeline-item').forEach((item) => {
+        timelineObserver.observe(item);
+      });
+
+      function updateTimelineProgress() {
+        const timeline = document.querySelector('.timeline-container');
+        const progress = document.getElementById('timelineProgress');
+
+        if (timeline && progress) {
+          const timelineRect = timeline.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+
+          if (timelineRect.top < windowHeight && timelineRect.bottom > 0) {
+            const visibleHeight = Math.min(
+              windowHeight - timelineRect.top,
+              timelineRect.height
+            );
+            const percentage = (visibleHeight / timelineRect.height) * 100;
+            progress.style.height =
+              Math.max(0, Math.min(100, percentage)) + '%';
+          }
+        }
+      }
+
+      window.addEventListener('scroll', updateTimelineProgress);
+      updateTimelineProgress();
+
+      // ===== SECRET MESSAGES =====
+      function revealSecret(element) {
+        const secret = element.querySelector('.timeline-secret');
+        const hint = element.querySelector('.secret-hint');
+
+        if (secret && hint) {
+          secret.classList.toggle('revealed');
+          if (secret.classList.contains('revealed')) {
+            hint.textContent = '✨ Mensagem revelada!';
+            createParticles(event, '✨');
+          } else {
+            hint.textContent = '💭 Clique para revelar uma mensagem secreta...';
+          }
+        }
+      }
+
+      // ===== PARTICLE EFFECTS =====
+      function createParticles(e, emoji = null) {
+        const particles = [
+          '❤️',
+          '💕',
+          '💖',
+          '💗',
+          '💓',
+          '💝',
+          '✨',
+          '🌟',
+          '⭐',
+          '💫',
+        ];
+        const particleCount = 20;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          particle.textContent =
+            emoji || particles[Math.floor(Math.random() * particles.length)];
+
+          const startX = e.clientX || window.innerWidth / 2;
+          const startY = e.clientY || window.innerHeight / 2;
+
+          particle.style.left = startX + (Math.random() - 0.5) * 100 + 'px';
+          particle.style.top = startY + 'px';
+
+          const duration = 2 + Math.random() * 2;
+          particle.style.animationDuration = duration + 's';
+
+          document.body.appendChild(particle);
+
+          setTimeout(() => particle.remove(), duration * 1000);
+        }
+      }
+
+      // ===== LOVE COUNTER =====
+      let loveCount = 0;
+      function clickHeart() {
+        loveCount++;
+        document.getElementById('loveCounter').textContent = loveCount;
+        const btn = document.getElementById('heartBtn');
+        btn.classList.add('clicked');
+        setTimeout(() => btn.classList.remove('clicked'), 600);
+
+        createParticles(event, '❤️');
+
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => {
+            const heart = document.createElement('div');
+            heart.textContent = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left =
+              window.innerWidth / 2 + (Math.random() - 0.5) * 200 + 'px';
+            heart.style.top = window.innerHeight + 'px';
+            heart.style.fontSize = 1.5 + Math.random() + 'em';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '1000';
+            heart.style.transition = 'all 3s ease-out';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+              heart.style.top = '-100px';
+              heart.style.opacity = '0';
+              heart.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+            }, 100);
+
+            setTimeout(() => heart.remove(), 3100);
+          }, i * 100);
+        }
+      }
+
+      // ===== ANIMATE SECTIONS =====
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      document.querySelectorAll('.section').forEach((section) => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(50px)';
+        section.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
+        observer.observe(section);
+      });
+
+      setTimeout(() => {
+        createParticles({
+          clientX: window.innerWidth / 2,
+          clientY: window.innerHeight / 3,
+        });
+      }, 1500);
+
+      // ===== PARALLAX EFFECT =====
+      document.addEventListener('mousemove', (e) => {
+        const stars = document.querySelectorAll('.star');
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+
+        stars.forEach((star, index) => {
+          const speed = ((index % 3) + 1) * 0.5;
+          const xOffset = (x - 0.5) * speed * 20;
+          const yOffset = (y - 0.5) * speed * 20;
+          star.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+        });
+      });
+    </script>
+  </body>
+</html>
