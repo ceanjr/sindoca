@@ -50,6 +50,16 @@ body::before {
   z-index: 0;
 }
 
+@keyframes gradientShift {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
 .stars {
   position: fixed;
   width: 100%;
@@ -68,6 +78,18 @@ body::before {
   animation: twinkle 3s infinite;
 }
 
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
 .particle {
   position: fixed;
   pointer-events: none;
@@ -76,12 +98,19 @@ body::before {
   animation: fall linear forwards;
 }
 
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 1;
+  }
+}
+
 .container {
   position: relative;
   max-width: 1400px;
   margin: 0 auto;
   padding: 60px 40px;
-  z-index: 1;
+  z-index: 100;
 }
 
 .header {
@@ -179,6 +208,17 @@ body::before {
   animation: slideDown 0.3s ease;
 }
 
+@keyframes slideDown {
+  from {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .player-content.active {
   display: block;
 }
@@ -226,6 +266,17 @@ body::before {
 .music-visualizer.active {
   display: block;
   animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .visualizer-title {
@@ -280,6 +331,12 @@ body::before {
     transparent
   );
   animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  to {
+    left: 100%;
+  }
 }
 
 .counter-title {
@@ -393,7 +450,7 @@ body::before {
   margin: 80px 0;
   display: flex;
   align-items: center;
-  opacity: 0;
+  opacity: 1;
   transform: translateY(50px);
   transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -430,7 +487,7 @@ body::before {
   bottom: -2px;
   background: linear-gradient(135deg, var(--primary), var(--accent));
   border-radius: 25px;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.4s ease;
   z-index: -1;
 }
@@ -484,7 +541,7 @@ body::before {
   border-radius: 15px;
   border-left: 4px solid var(--primary);
   font-style: italic;
-  opacity: 0;
+  opacity: 1;
   max-height: 0;
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -517,10 +574,10 @@ body::before {
   margin-bottom: 60px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05);
-  animation: fadeInUp 1s ease;
   position: relative;
+  /* overflow: hidden; */
 }
-
+/* 
 .section::after {
   content: '';
   position: absolute;
@@ -535,7 +592,7 @@ body::before {
     transparent 70%
   );
   pointer-events: none;
-}
+} */
 
 .message-box {
   font-family: 'Playfair Display', serif;
@@ -570,6 +627,16 @@ body::before {
   animation-delay: 2s;
 }
 
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(10deg);
+  }
+}
+
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -601,7 +668,7 @@ body::before {
     rgba(255, 107, 157, 0.2),
     rgba(255, 217, 61, 0.2)
   );
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.4s ease;
 }
 
@@ -717,6 +784,26 @@ body::before {
   box-shadow: 0 8px 30px rgba(255, 107, 157, 0.5);
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 1;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .interactive-heart {
   text-align: center;
   margin: 80px 0;
@@ -738,6 +825,25 @@ body::before {
 
 .heart-button.clicked {
   animation: heartBeat 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes heartBeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.4);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  45% {
+    transform: scale(1.35);
+  }
+  60% {
+    transform: scale(1.05);
+  }
 }
 
 .counter {
@@ -772,7 +878,7 @@ body::before {
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, var(--primary), var(--accent));
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.4s ease;
 }
 
@@ -798,6 +904,28 @@ body::before {
   font-size: 1.1em;
   line-height: 1.6;
   font-weight: 400;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 1;
+    transform: translateY(-80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 1;
+    transform: translateY(80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .music-inspired {
